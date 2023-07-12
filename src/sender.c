@@ -4,7 +4,10 @@
 #include <fcntl.h>
 #include <sys/mman.h>
 #include <unistd.h>
+#include <sys/types.h>
 
+
+//#define SHM_SIZE ((off_t)5*1024*1024*1024)
 int main(){
  int fd = shm_open(NAME, O_CREAT | O_EXCL | O_RDWR,0600);
 
@@ -13,7 +16,7 @@ int main(){
      return EXIT_FAILURE; 
  }
 
- ftruncate(fd, 1024*1024*1024*5);
+ ftruncate(fd, SIZE);
  int *data = (int *) mmap(0, SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
  printf("sender mapped address: %p\n",data);
  for (int i =0; i< NUM ;++i){

@@ -12,8 +12,10 @@ grade: stable # must be 'stable' to release into candidate/stable channels
 confinement: strict # use 'strict' once you have the right plugs and slots
 
 apps:
-  shm:
-    command: a.out
+  writer:
+    command: sender
+  read:
+    command: reader
 
 parts:
   my-part:
